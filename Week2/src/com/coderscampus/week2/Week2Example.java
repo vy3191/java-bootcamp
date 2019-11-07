@@ -3,7 +3,7 @@ package com.coderscampus.week2;
 public class Week2Example {
 
 	public static void main (String[] args) {
-		int age = 64;
+		int age = 21;
 		
 		if (age >= 19) {       
 			System.out.println("You are an adult");
@@ -18,6 +18,14 @@ public class Week2Example {
 			System.out.println("You are a child");
 		}
 		
-		System.out.println("Your age is " + age);
+		String output = "Your age is " + age;
+		
+		System.out.println(output);
+		
+		if (output.equals("Your age is 18")) {
+			System.out.println("Yay you can vote!");
+		} else if (output.equals("Your age is 21")) {
+			System.out.println("Yay you can drink / gamble!");
+		}
 	}
 }

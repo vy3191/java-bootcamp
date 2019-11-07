@@ -14,9 +14,19 @@ public class Week2Example {
 		/////////////////////////////////////////////
 		
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Type in any input:");
-		String userInput = scanner.nextLine();
+		System.out.println("Type in your name: ");
+		String name = scanner.nextLine();
+		System.out.println("Type in your age: ");
+		String age = scanner.nextLine();
 		
-		System.out.println("You typed in: " + userInput);
+		if (name.equals("Trevor") 
+				|| age.equals("36")
+				|| name.equals("TJ")) {
+			System.out.println("Holy cow it's me!");
+		} else {
+			System.out.println("Hello: " + name);
+		}
+		
+		scanner.close();
 	}
 }

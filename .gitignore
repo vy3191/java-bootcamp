@@ -24,3 +24,6 @@ hs_err_pid*
 Week2/.classpath
 Week2/.project
 Week2/.settings/org.eclipse.jdt.core.prefs
+*.classpath
+*.project
+*.prefs

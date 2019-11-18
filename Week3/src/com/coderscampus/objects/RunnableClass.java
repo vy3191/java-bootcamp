@@ -7,9 +7,12 @@ public class RunnableClass {
 		// Object -> a Noun, it's an instantiation of a Class
 		
 		// Data type, variable name, assignment operation
-		int someNumber = 39;
+		Random random = new Random();
 		
 		Human trevorPage = new Human();
+		for (int i = 0; i<20; i = i + 1) {
+			System.out.println("Random number is " + random.nextInt(10)); 
+		}
 		
 		trevorPage.setProperties("male", "5'10\"", "160", "brown");
 		

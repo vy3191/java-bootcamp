@@ -12,9 +12,17 @@ public class FileIOExample {
 		BufferedReader fileReader = null;
 		try {
 			fileReader = new BufferedReader(new FileReader("data.txt"));
-			System.out.println(fileReader.toString());
+			
+			String line = "";
+			while ((line = fileReader.readLine()) != null) {
+				System.out.println(line);
+			}
+			
 		} catch (FileNotFoundException e) {
 			System.out.println("Oops, the file wasn't found");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Oops, there was an I/O Exception");
 			e.printStackTrace();
 		} finally {
 			try {

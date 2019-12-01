@@ -5,9 +5,11 @@ public class Teacher {
 	private String levelOfEducation;
 
 	public Teacher () {
+		System.out.println("Inside the Teacher constructor");
 		this.classes = "No classes assigned";
 		this.levelOfEducation = "No education assigned";
 	}
+	
 	public String getClasses() {
 		return classes;
 	}

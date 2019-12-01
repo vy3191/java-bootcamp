@@ -7,4 +7,5 @@ public class CompSciTeacher extends Teacher {
 		this.setClasses("COMP 101, COMP 201");
 		this.setLevelOfEducation("Bachelor of Science");
 	}
+	
 }

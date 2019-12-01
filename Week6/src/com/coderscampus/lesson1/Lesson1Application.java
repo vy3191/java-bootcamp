@@ -4,10 +4,14 @@ public class Lesson1Application {
 
 	public static void main(String[] args) {
 		Teacher physicsTeacher = new PhysicsTeacher();
+
+		// This is an alternative way of casting, but it's more verbose
+//		PhysicsTeacher castedPhysicsTeacher = (PhysicsTeacher)physicsTeacher;
+//		castedPhysicsTeacher.teach("Trevor Page");
 		
 		System.out.println(physicsTeacher.getClasses());
 		System.out.println(physicsTeacher.getLevelOfEducation());
-		physicsTeacher.teach("Trevor Page");
+		((PhysicsTeacher)physicsTeacher).teach("Trevor Page");
 		System.out.println("----");
 		
 		Teacher compSciTeacher = new CompSciTeacher();

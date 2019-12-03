@@ -7,8 +7,8 @@ public interface FileService {
 	
 	String standardFileName = "data.txt";
 	
-	String readLine (File file) throws IOException;
+	public abstract String readLine (File file) throws IOException;
 	
-	void writeLine(File file, String line) throws IOException;
+	public abstract void writeLine(File file, String line) throws IOException;
 	
 }

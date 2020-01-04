@@ -28,6 +28,11 @@ public class Recipe {
 	}
 	@Override
 	public String toString() {
-		return "Recipe [name=" + name + ", instructions=" + instructions + ", priceOpt=" + priceOpt + "]";
+		return "Recipe [name=" + name + ", instructions=" + instructions + getPrice() + "]";
+	}
+	private String getPrice() {
+		String priceString = priceOpt.map(price -> ", price=" + price)
+									 .orElse(", price=free");
+		return priceString;
 	}
 }

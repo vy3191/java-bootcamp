@@ -31,5 +31,10 @@ public class OptionalApplication {
 //	}
 	
 	
+	cookies.setPriceOpt(new BigDecimal(20.00));
+	// lesson 4
+	cookies.getPriceOpt()
+		   .ifPresent(RecipeService::billClient);
+	
   }
 }

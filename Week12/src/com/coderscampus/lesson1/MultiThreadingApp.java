@@ -1,7 +1,12 @@
 package com.coderscampus.lesson1;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 
 public class MultiThreadingApp {
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
@@ -20,13 +25,18 @@ public class MultiThreadingApp {
 		// For a CPU bound operation like we have in our "SomeTask" class,
 		//  we should make use of an ExecutorService
 		
-//		ExecutorService service = Executors.newSingleThreadExecutor();
+//		ExecutorService executor = Executors.newSingleThreadExecutor();
+		List<CompletableFuture<Void>> tasks = new ArrayList<>();
 		
+		// This is how you get access to the ForkJoinPool's common pool,
+		//   which is the default thread pool that's used with CompletableFutures
+		//   if you do not specify an executor
+//		ForkJoinPool commonPool = ForkJoinPool.commonPool();
 		for (int i=0; i<20; i++) {
-			CompletableFuture.supplyAsync(() -> new SomeTask())
+			CompletableFuture<Void> task = CompletableFuture.supplyAsync(() -> new SomeTask())
 							 .thenApply(someTask -> someTask.call())
 							 .thenAccept(dto -> System.out.println(dto));
-			
+			tasks.add(task);
 			// Futures were great prior to Java 8, but now we have something
 			//  better
 //			Future<TaskDto> futureTask = service.submit(new SomeTask());
@@ -35,6 +45,13 @@ public class MultiThreadingApp {
 		
 		message = "Done";
 		System.out.println(message);
+		
+		while (tasks.stream()
+					.filter(CompletableFuture::isDone)
+				    .count() < 20) {
+		     // this just loops and keeps the main thread alive
+			 //	  until all threads are done working. 
+		}
 	}
 	
 	

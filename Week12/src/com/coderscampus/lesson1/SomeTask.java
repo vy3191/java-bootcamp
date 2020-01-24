@@ -1,14 +1,13 @@
 package com.coderscampus.lesson1;
 
 import java.util.Random;
-import java.util.concurrent.Callable;
 
-public class SomeTask implements Callable<TaskDto> {
+public class SomeTask {
 	private static int taskId = 0;
+	private TaskDto taskDto;
 	
-	@Override
-	public TaskDto call() {
-		TaskDto taskDto = new TaskDto();
+	public SomeTask doSomeWork() {
+		taskDto = new TaskDto();
 		for (int i=0; i<10000000; i++) {
 			Integer int1 = new Random().nextInt();
 			Integer int2 = new Random().nextInt();
@@ -18,6 +17,11 @@ public class SomeTask implements Callable<TaskDto> {
 		taskId++;
 		System.out.println("Hey look at me, I'm task-id: " + taskId + "! "
 				+ "I'm running on thread: " + Thread.currentThread().getName());
+		
+		return this;
+	}
+	
+	public TaskDto markComplete () {
 		taskDto.setFinished(true);
 		return taskDto;
 	}

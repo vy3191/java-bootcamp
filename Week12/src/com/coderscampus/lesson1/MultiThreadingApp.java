@@ -1,9 +1,7 @@
 package com.coderscampus.lesson1;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class MultiThreadingApp {
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
@@ -22,11 +20,17 @@ public class MultiThreadingApp {
 		// For a CPU bound operation like we have in our "SomeTask" class,
 		//  we should make use of an ExecutorService
 		
-		ExecutorService service = Executors.newSingleThreadExecutor();
+//		ExecutorService service = Executors.newSingleThreadExecutor();
 		
-		for (int i=0; i<50; i++) {
-			Future<TaskDto> futureTask = service.submit(new SomeTask());
-			System.out.println(futureTask.get());
+		for (int i=0; i<20; i++) {
+			CompletableFuture.supplyAsync(() -> new SomeTask())
+							 .thenApply(someTask -> someTask.call())
+							 .thenAccept(dto -> System.out.println(dto));
+			
+			// Futures were great prior to Java 8, but now we have something
+			//  better
+//			Future<TaskDto> futureTask = service.submit(new SomeTask());
+//			System.out.println(futureTask.get());
 		}
 		
 		message = "Done";

@@ -18,6 +18,9 @@ public class FileController {
 	@Autowired
 	private ApplicationContext applicationContext;
 	
+	@Autowired
+	private FileService fileService;
+	
 	@GetMapping("/customer-report")
 	public Integer getCustomerData (Integer customerId) {
 		Integer customerData = 0;
@@ -32,6 +35,7 @@ public class FileController {
 
 	@GetMapping("/read-lines")
 	public List<String> readLines () throws IOException {
+		System.out.println(fileService);
 		FileService fileService = applicationContext.getBean(FileService.class);
 		System.out.println(fileService);
 		fileService = applicationContext.getBean(FileService.class);

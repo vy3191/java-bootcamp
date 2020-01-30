@@ -1,4 +1,4 @@
-package com.coderscampus.week13;
+package com.coderscampus;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

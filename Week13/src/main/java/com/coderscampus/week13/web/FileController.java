@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,15 @@ import com.coderscampus.week13.service.FileService;
 
 @RestController
 public class FileController {
+	
+	@Value("${superuser.username}")
+	private String superuserUsername;
+
+	@Value("${superuser.password}")
+	private String superuserPassword;
+	
+	@Value("${superuser.name}")
+	private String superuserName;
 	
 	@Autowired
 	private FileService fileService;
@@ -36,6 +46,11 @@ public class FileController {
 	@GetMapping("/read-lines")
 	public List<String> readLines () throws IOException {
 		System.out.println(user);
+		
+		System.out.println(superuserUsername);
+		System.out.println(superuserPassword);
+		System.out.println(superuserName);
+		
 		return fileService.readFile();
 	}
 	

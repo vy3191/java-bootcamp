@@ -1,5 +1,6 @@
 package com.coderscampus.week13.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -28,7 +29,12 @@ public class Week13DevConfiguration {
 	}
 	
 	@Bean
-	public User user () {
+	public User superUser () {
 		return new User("trevor@craftycodr.com", "asdfasdf", "Trevor Page");
+	}
+	
+	@Bean
+	public User regularUser () {
+		return new User("regular_joe@gmail.com", "joe123", "Joe Blow");
 	}
 }

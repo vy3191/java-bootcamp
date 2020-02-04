@@ -1,5 +1,11 @@
 package com.coderscampus.Week14;
 
+import org.junit.jupiter.api.Test;
+
+import com.coderscampus.Week14.dto.Person;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class JsonExample {
 
 	/**
@@ -55,4 +61,24 @@ public class JsonExample {
 	 *   
 	 */
 	
+	@Test
+	public void convertJsonStringToJavaObj () {
+		 String jsonString = "{\"name\" : \"Trevor Page\", \"age\" : 37, \"gender\" : \"Male\"}";
+		 
+		 ObjectMapper mapper = new ObjectMapper();
+		 try {
+			Person person = mapper.readValue(jsonString, Person.class);
+			celebrateBirthday(person);
+			
+			System.out.println(mapper.writeValueAsString(person));
+			
+			
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void celebrateBirthday(Person person) {
+		person.setAge(person.getAge()+1);
+	}
 }

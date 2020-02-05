@@ -1,7 +1,6 @@
 package com.coderscampus.Week14.web;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coderscampus.Week14.dto.Person;
@@ -10,9 +9,7 @@ import com.coderscampus.Week14.dto.Person;
 public class PersonController {
 	
 	@PostMapping("/persons")
-	public Person createPerson (@RequestParam String name, 
-			@RequestParam(required = false) String gender, 
-			@RequestParam Integer age) {
+	public Person createPerson (String name, String gender, Integer age) {
 		Person person = new Person();
 		person.setName(name);
 		person.setAge(age);

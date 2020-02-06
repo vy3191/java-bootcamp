@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.coderscampus.Week14.alphaadvantage.dto.AlphaAdvantageResponse;
+
 public class AlphaAdvantageIntegration {
 	
 	@Test
@@ -21,7 +23,7 @@ public class AlphaAdvantageIntegration {
 									  .build()
 									  .toUri();
 		
-		ResponseEntity<String> response = rt.getForEntity(uri, String.class);
-		System.out.println(response);
+		ResponseEntity<AlphaAdvantageResponse> response = rt.getForEntity(uri, AlphaAdvantageResponse.class);
+		System.out.println(response.getBody());
 	}
 }

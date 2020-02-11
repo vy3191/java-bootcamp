@@ -26,3 +26,5 @@ hs_err_pid*
 *.project
 *.prefs
 /bin
+Week15/mvnw
+Week15/mvnw.cmd

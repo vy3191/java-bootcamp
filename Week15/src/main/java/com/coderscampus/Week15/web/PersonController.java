@@ -1,5 +1,7 @@
 package com.coderscampus.Week15.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,9 +23,12 @@ public class PersonController {
 		//   This is what gets returned / resolved when we
 		//     return a String inside of a regular Controller GetMapping method
 		//   /src/main/resources/templates/welcome.html
+		List<Person> people = personService.findAll();
+		
 		Person person = new Person();
 		
 		model.put("person", person);
+		model.put("people", people);
 		
 		return "people";
 	}

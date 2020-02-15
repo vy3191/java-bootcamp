@@ -1,5 +1,7 @@
 package com.coderscampus.Week15.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,10 @@ public class PersonService {
 
 	public Person findById(Integer personId) {
 		return personRepo.findById(personId);
+	}
+
+	public List<Person> findAll() {
+		return personRepo.findAll();
 	}
 
 }

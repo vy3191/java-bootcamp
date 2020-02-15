@@ -1,6 +1,7 @@
 package com.coderscampus.Week15.domain;
 
 public class Person {
+	private Integer id;
 	private String firstName;
 	private String lastName;
 	
@@ -16,9 +17,16 @@ public class Person {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	@Override
 	public String toString() {
-		return "Person [firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
+	
 	
 }

@@ -4,19 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.coderscampus.Week15.domain.Person;
 import com.coderscampus.Week15.service.PersonService;
 
 @Controller
-public class WelcomeController {
+public class PersonController {
 	
 	@Autowired
 	private PersonService personService;
 	
-	@GetMapping("")
-	public String getRootWebpage (ModelMap model) {
+	@GetMapping("/persons")
+	public String getPeople (ModelMap model) {
 		//   This is what gets returned / resolved when we
 		//     return a String inside of a regular Controller GetMapping method
 		//   /src/main/resources/templates/welcome.html
@@ -24,13 +25,20 @@ public class WelcomeController {
 		
 		model.put("person", person);
 		
-		return "welcome";
+		return "people";
 	}
 	
-	@PostMapping("")
+	@GetMapping("/persons/{personId}")
+	public String getPerson (@PathVariable Integer personId, ModelMap model) {
+		Person person = personService.findById(personId);
+		model.put("person", person);
+		return "people";
+	}
+	
+	@PostMapping("/persons")
 	public String postRootWebpage (Person person) {
 		Person savedPerson = personService.save(person);
 		System.out.println(savedPerson);
-		return "redirect:/";
+		return "redirect:/persons";
 	}
 }

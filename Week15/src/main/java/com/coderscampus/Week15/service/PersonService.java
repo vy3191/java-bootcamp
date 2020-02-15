@@ -31,4 +31,8 @@ public class PersonService {
 		return personRepo.findAll();
 	}
 
+	public void delete(Integer personId) {
+		personRepo.delete(personId);
+	}
+
 }

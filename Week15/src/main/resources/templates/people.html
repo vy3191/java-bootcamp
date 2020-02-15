@@ -10,7 +10,7 @@
 				Person #[[${storedPerson.id}]]: [[${storedPerson.firstName}]] [[${storedPerson.lastName}]]
 			</span>
 		</div>
-		
+		<hr/>
 		<form action="" method="post">
 			<input type="hidden" th:field="${person.id}"/>
 			<div>
@@ -23,7 +23,11 @@
 			</div>
 			<div>
 				<button>Submit</button>
+				
 			</div>
+		</form>
+		<form th:action="@{/persons/{personId}/delete(personId=${person.id})}" method="post" th:if="${person.id != null}">
+			<button>Delete</button>
 		</form>
 	</body>
 </html>

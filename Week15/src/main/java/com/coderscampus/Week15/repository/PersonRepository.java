@@ -29,4 +29,8 @@ public class PersonRepository {
 			         .map(Entry::getValue)
 			         .collect(Collectors.toList());
 	}
+
+	public void delete(Integer personId) {
+		people.remove(personId);
+	}
 }

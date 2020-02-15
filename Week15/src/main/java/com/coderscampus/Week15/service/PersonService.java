@@ -15,7 +15,9 @@ public class PersonService {
 	private PersonRepository personRepo;
 	
 	public Person save(Person person) {
-		person.setId(personId++);
+		if (person.getId() == null)
+			person.setId(personId++);
+		
 		return personRepo.save(person);
 	}
 

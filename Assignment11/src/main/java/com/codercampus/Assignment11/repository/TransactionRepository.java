@@ -19,7 +19,7 @@ public class TransactionRepository {
 		populateData();
 	}
 	
-	public List<Transaction> getTransactions () {
+	public List<Transaction> findAll () {
 		return transactions;
 	}
 

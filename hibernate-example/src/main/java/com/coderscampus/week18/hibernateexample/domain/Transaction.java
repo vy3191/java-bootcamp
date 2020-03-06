@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +18,7 @@ public class Transaction {
 	private LocalDateTime transactionDate;
 	private Double amount;
 	private String type;
+	private Account account;
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getTransactionId() {
@@ -42,5 +45,13 @@ public class Transaction {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	@ManyToOne
+	@JoinColumn(name="account_id")
+	public Account getAccount() {
+		return account;
+	}
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 }

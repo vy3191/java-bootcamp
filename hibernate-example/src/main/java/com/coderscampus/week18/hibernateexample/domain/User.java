@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity // Class name = User, DB Table name = user
@@ -20,6 +21,7 @@ public class User {
 	private String password;
 	private String name;
 	private List<Account> accounts = new ArrayList<>();
+	private Address address;
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getUserId() {
@@ -56,5 +58,12 @@ public class User {
 	}
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
+	}
+	@OneToOne(mappedBy = "user")
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 }

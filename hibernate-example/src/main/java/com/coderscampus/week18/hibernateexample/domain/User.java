@@ -1,10 +1,26 @@
 package com.coderscampus.week18.hibernateexample.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity // Class name = User, DB Table name = user
+@Table(name = "users")
 public class User {
+	private Long userId;
 	private String username;
 	private String password;
 	private String name;
 	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 	public String getUsername() {
 		return username;
 	}

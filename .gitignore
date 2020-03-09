@@ -26,3 +26,6 @@ hs_err_pid*
 *.project
 *.prefs
 /bin
+assignment-10-solution/mvnw
+assignment-10-solution/mvnw.cmd
+assignment-10-solution/.mvn/

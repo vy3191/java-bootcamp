@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.coderscampus.week18.hibernateexample.domain.User;
 import com.coderscampus.week18.hibernateexample.service.UserService;
@@ -17,6 +18,21 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@GetMapping("/register")
+	public String getCreateUser (ModelMap model) {
+		
+		model.put("user", new User());
+		
+		return "register";
+	}
+	
+	@PostMapping("/register")
+	public String postCreateUser (User user) {
+		System.out.println(user);
+		userService.createUser(user);
+		return "redirect:/register";
+	}
 	
 	@GetMapping("/users")
 	public String getAllUsers (ModelMap model) {

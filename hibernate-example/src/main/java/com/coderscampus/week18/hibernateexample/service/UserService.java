@@ -8,7 +8,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.coderscampus.week18.hibernateexample.domain.Account;
 import com.coderscampus.week18.hibernateexample.domain.User;
+import com.coderscampus.week18.hibernateexample.repository.AccountRepository;
 import com.coderscampus.week18.hibernateexample.repository.UserRepository;
 
 @Service
@@ -16,6 +18,8 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private AccountRepository accountRepo;
 	
 	public List<User> findByUsername(String username) {
 		return userRepo.findByUsername(username);
@@ -47,6 +51,19 @@ public class UserService {
 	}
 
 	public User saveUser(User user) {
+		if (user.getUserId() == null) {
+			Account checking = new Account();
+			checking.setAccountName("Checking Account");
+			checking.getUsers().add(user);
+			Account savings = new Account();
+			savings.setAccountName("Savings Account");
+			savings.getUsers().add(user);
+			
+			user.getAccounts().add(checking);
+			user.getAccounts().add(savings);
+			accountRepo.save(checking);
+			accountRepo.save(savings);
+		}
 		return userRepo.save(user);
 	}
 

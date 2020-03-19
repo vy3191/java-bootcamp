@@ -1,7 +1,7 @@
 package com.coderscampus.week18.hibernateexample.web;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,11 +39,11 @@ public class UserController {
 //		List<User> users = userService.findByUsername("trevor@craftycodr.com");
 //		List<User> users = userService.findByNameAndUsername("Trevor Page2", "trevor@craftycodr.com");
 //		List<User> users = userService.findByCreatedDateBetween(LocalDate.of(2020, 1, 2), LocalDate.of(2020, 1, 3));
-		List<User> users = userService.findAll();
+		Set<User> users = userService.findAll();
 		
 		model.put("users", users);
 		if (users.size() == 1) {
-			model.put("user", users.get(0));
+			model.put("user", users.iterator().next());
 		}
 		
 		return "users";

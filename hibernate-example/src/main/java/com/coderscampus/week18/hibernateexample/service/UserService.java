@@ -3,6 +3,7 @@ package com.coderscampus.week18.hibernateexample.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +37,8 @@ public class UserService {
 			return new User();
 	}
 	
-	public List<User> findAll () {
-		return userRepo.findAll();
+	public Set<User> findAll () {
+		return userRepo.findAllUsersWithAccountsAndAddresses();
 	}
 	
 	public User findById(Long userId) {

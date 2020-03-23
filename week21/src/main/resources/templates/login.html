@@ -56,9 +56,17 @@
 			
 			submitBtn.addEventListener('click', submitBtnClick)
 			
+			submitBtn.addEventListener('mouseover', function () {
+				alert("Hey! I've been mouse-overed")
+			})
+			
+			var usernameTextbox = document.querySelector("#username")
+			usernameTextbox.addEventListener('focus', () => 
+						console.log("The username textbox now has focus"))
+			
 			// public void myMethod () {}  -- This is Java code for comparison
 			function submitBtnClick () {
-				alert(`Hey! I've been clicked`)
+				alert("Hey! I've been clicked")
 			}
 		</script>
 	</body>

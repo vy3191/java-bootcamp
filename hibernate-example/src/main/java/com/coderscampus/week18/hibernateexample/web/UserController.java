@@ -51,8 +51,7 @@ public class UserController {
 	
 	@GetMapping("/users/{userId}")
 	public String getOneUser (ModelMap model, @PathVariable Long userId) {
-		User user = userService.findExactlyOneUserByUsername("elon@spacex.com");
-//		User user = userService.findById(userId);
+		User user = userService.findById(userId);
 		model.put("users", Arrays.asList(user));
 		model.put("user", user);
 		return "users";

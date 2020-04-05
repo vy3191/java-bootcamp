@@ -1,5 +1,6 @@
 package com.coderscampus.week22.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,11 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coderscampus.week22.domain.User;
+import com.coderscampus.week22.service.UserService;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
-
+	
+	@Autowired
+	private UserService userService;
+	
 	@PostMapping("/exists")
 	@ResponseBody
 	public Boolean postExists (@RequestBody User user) {
@@ -40,6 +45,13 @@ public class UserController {
 		model.put("user", user);
 		
 		return "register";
+	}
+	
+	@PostMapping("/register")
+	public String postRegister (User user) {
+		userService.save(user);
+		
+		return "redirect:/login";
 	}
 	
 }

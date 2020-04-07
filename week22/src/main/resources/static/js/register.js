@@ -1,21 +1,5 @@
 var usernameTextbox = document.querySelector('#username')
 
-function errorAnimation () { 
-	return new Promise( (resolve, reject) => {
-		var i = 0
-		console.log("Inside the promise")
-		var animationInterval = setInterval(() => {
-			i++
-			usernameTextbox.style.backgroundColor = `rgb(${i}, 0, 0)`
-			if (i >= 255) {
-				clearInterval(animationInterval);
-				console.log("Resolving promise")
-				resolve("Done executing animation code")
-			}
-		}, 1)
-	})
-}
-
 usernameTextbox.addEventListener('blur', () => {
 	var user = {
 			'username': usernameTextbox.value,
@@ -34,11 +18,26 @@ usernameTextbox.addEventListener('blur', () => {
 			console.log("username already exists")
 			usernameTextbox.focus()
 			usernameTextbox.select()
-			
-			errorAnimation().then( () => {
+			showErrorAnimation( () => {
+				// animation is completed at this point
 				console.log("We're now in the callback function")
 				usernameTextbox.style.backgroundColor = 'rgb(255,255,255)'
-			} )
+			})
 		}
 	})
 })
+
+function showErrorAnimation(callback) {
+	console.log("We're in the showErrorAnimation function")
+	var i = 0
+	
+	var animationInterval = setInterval(() => {
+		i++
+		usernameTextbox.style.backgroundColor = `rgb(${i}, 0, 0)`
+		if (i >= 255) {
+			clearInterval(animationInterval);
+			console.log("Done executing animation code")
+			callback()
+		}
+	}, 1)
+}

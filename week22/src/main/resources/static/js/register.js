@@ -46,29 +46,39 @@ usernameTextbox.addEventListener('blur', () => {
 	var user = {
 			'username': usernameTextbox.value,
 	}
-	fetch('/users/exists', {
+	syncCheckIfUserExists(user)
+	
+})
+
+async function syncCheckIfUserExists(user) {
+	let something = await checkIfUserExists(user)
+	console.log("here we are after the fetch has completed")
+}
+
+async function checkIfUserExists (user) {
+	let responseEntity = await fetch('/users/exists', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(user)
 	})
-	.then( (responseEntity) => responseEntity.json() )
-	.then( (data) => {
-		if (data === true) {
-			// this users already exists!
-			console.log("username already exists")
-			usernameTextbox.focus()
-			usernameTextbox.select()
-			showErrorAnimation().then((message) => {
-				// animation is completed at this point
-				console.log("We're now in the callback function")
-				console.log(message)
-				usernameTextbox.style.backgroundColor = 'rgb(255,255,255)'
-			})
-		}
-	})
-})
+	let userExists = await responseEntity.json()
+	
+	if (userExists === true) {
+		// this users already exists!
+		console.log("username already exists")
+		usernameTextbox.focus()
+		usernameTextbox.select()
+		showErrorAnimation().then((message) => {
+			// animation is completed at this point
+			console.log("We're now in the callback function")
+			console.log(message)
+			usernameTextbox.style.backgroundColor = 'rgb(255,255,255)'
+		})
+	}
+	
+}
 
 function showErrorAnimation () {
 	return new Promise( (resolve, reject) => {

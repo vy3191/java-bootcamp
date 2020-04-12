@@ -1,6 +1,9 @@
 package com.coderscampus.lesson5;
 
-public class Person implements Comparable<Person> {
+import java.io.Serializable;
+
+public class Person implements Comparable<Person>, Serializable {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private Integer height;
 	
